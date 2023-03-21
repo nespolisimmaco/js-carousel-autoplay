@@ -1,6 +1,5 @@
-// **BONUS 2:**
-// Aggiungere la visualizzazione di tutte le  = document.querySelectorAll(".thumbnail"); sulla destra dell’immagine grande attiva, come nello screenshot proposto. Tutte le miniature avranno un layer di opacità scura, tranne quella corrispondente all’immagine attiva, che invece avrà un bordo colorato.
-// Al click delle frecce, oltre al cambio di immagine attiva, gestire il cambio di miniatura attiva.
+// ** DESCRIZIONE **
+// Aggiungere al carousel funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
 
 // Inserisco tutte le immagini dinamicamente servendomi di un array con le immagini e un ciclo for che concatena un template literal.
 // Array con immagini
@@ -67,6 +66,9 @@ previousButton.addEventListener("click", function () {
 })
 // Bottone "successivo"
 nextButton.addEventListener("click", nextImage);
+
+// ********** AUTOPLAY **********
+const myInterval = setInterval(nextImage, 3000);
 
 ////////////////
 // FUNCTIONS
