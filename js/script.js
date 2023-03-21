@@ -33,34 +33,7 @@ items[activeItemIndex].classList.add("active-item");
 thumbnails[activeItemIndex].classList.add("active-thumbnail");
 // Aggiungo l'event listener ai bottoni
 // Bottone "precedente"
-previousButton.addEventListener("click", function () {
-    // SE siamo al primo elemento
-    //  dobbiamo andare all'ultimo elemento
-    // ALTRIMENTI
-    //  si scende a partire dall'elemento corrente
-    if (activeItemIndex === 0) {
-        // Immagine
-        items[activeItemIndex].classList.remove("active-item");
-        // Thumbnail
-        thumbnails[activeItemIndex].classList.remove("active-thumbnail");
-        activeItemIndex = items.length - 1;
-        console.log(activeItemIndex);
-        items[activeItemIndex].classList.add("active-item");
-        thumbnails[activeItemIndex].classList.add("active-thumbnail");
-    } else {
-        // Immagini
-        // Quando clicco su questo bottone, tolgo active all'elemento corrente
-        items[activeItemIndex].classList.remove("active-item");
-        // Thumbnail
-        thumbnails[activeItemIndex].classList.remove("active-thumbnail");
-        // Diminusico l'indice
-        activeItemIndex--;
-        console.log(activeItemIndex);
-        // E assegno active all'elemento successivo
-        items[activeItemIndex].classList.add("active-item");
-        thumbnails[activeItemIndex].classList.add("active-thumbnail");
-    }
-})
+previousButton.addEventListener("click", previousImage);
 // Bottone "successivo"
 nextButton.addEventListener("click", nextImage);
 
@@ -70,8 +43,13 @@ nextButton.addEventListener("click", nextImage);
 
 // Ogni tre secondi passo all'imagine successiva
 let myInterval = setInterval(nextImage, 3000);
-// Al click dell'utente, blocco interval e lo avvio di nuovo
+// Al click dell'utente sul bottone "successivo", blocco interval e lo avvio di nuovo
 nextButton.addEventListener("click", () => {
+    clearInterval(myInterval);
+    myInterval = setInterval(nextImage, 3000);;
+});
+// Al click dell'utente sul bottone "precedente", blocco interval e lo avvio di nuovo
+previousButton.addEventListener("click", () => {
     clearInterval(myInterval);
     myInterval = setInterval(nextImage, 3000);;
 });
@@ -104,6 +82,38 @@ function nextImage() {
         thumbnails[activeItemIndex].classList.remove("active-thumbnail");
         // Aumento l'indice
         activeItemIndex++;
+        console.log(activeItemIndex);
+        // E assegno active all'elemento successivo
+        items[activeItemIndex].classList.add("active-item");
+        thumbnails[activeItemIndex].classList.add("active-thumbnail");
+    }
+}
+
+/**
+ * Description Passaggio alla immagine precedente
+ */
+function previousImage() {
+    // SE siamo al primo elemento
+    //  dobbiamo andare all'ultimo elemento
+    // ALTRIMENTI
+    //  si scende a partire dall'elemento corrente
+    if (activeItemIndex === 0) {
+        // Immagine
+        items[activeItemIndex].classList.remove("active-item");
+        // Thumbnail
+        thumbnails[activeItemIndex].classList.remove("active-thumbnail");
+        activeItemIndex = items.length - 1;
+        console.log(activeItemIndex);
+        items[activeItemIndex].classList.add("active-item");
+        thumbnails[activeItemIndex].classList.add("active-thumbnail");
+    } else {
+        // Immagini
+        // Quando clicco su questo bottone, tolgo active all'elemento corrente
+        items[activeItemIndex].classList.remove("active-item");
+        // Thumbnail
+        thumbnails[activeItemIndex].classList.remove("active-thumbnail");
+        // Diminusico l'indice
+        activeItemIndex--;
         console.log(activeItemIndex);
         // E assegno active all'elemento successivo
         items[activeItemIndex].classList.add("active-item");
