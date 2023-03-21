@@ -46,13 +46,17 @@ let myInterval = setInterval(nextImage, 3000);
 // Al click dell'utente sul bottone "successivo", blocco interval e lo avvio di nuovo
 nextButton.addEventListener("click", () => {
     clearInterval(myInterval);
-    myInterval = setInterval(nextImage, 3000);;
+    myInterval = setInterval(nextImage, 3000);
 });
 // Al click dell'utente sul bottone "precedente", blocco interval e lo avvio di nuovo
 previousButton.addEventListener("click", () => {
     clearInterval(myInterval);
-    myInterval = setInterval(nextImage, 3000);;
+    myInterval = setInterval(nextImage, 3000);
 });
+// Stoppare autoplay all'hover sullo slider e farlo ripartire al togliere dell'hover
+const mySlider = document.querySelector(".slider");
+mySlider.addEventListener("mouseover", mouseOver);
+mySlider.addEventListener("mouseout", mouseOut);
 
 //////////////////////////
 // FUNCTIONS
@@ -119,4 +123,13 @@ function previousImage() {
         items[activeItemIndex].classList.add("active-item");
         thumbnails[activeItemIndex].classList.add("active-thumbnail");
     }
+}
+
+// Funzioni per bloccare l'autoplay all'hover sullo slider e per riprenderlo al togliere dell'hover
+function mouseOver() {
+    clearInterval(myInterval);
+}
+
+function mouseOut() {
+  myInterval = setInterval(nextImage, 3000);
 }
