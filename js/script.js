@@ -66,7 +66,15 @@ previousButton.addEventListener("click", function () {
     }
 })
 // Bottone "successivo"
-nextButton.addEventListener("click", function () {
+nextButton.addEventListener("click", nextImage);
+
+////////////////
+// FUNCTIONS
+
+/**
+ * Description Passaggio alla immagine succesiva
+ */
+function nextImage() {
     // SE siamo all'ultimo elemento
     //  dobbiamo andare al primo elemento
     // ALTRIMENTI
@@ -93,4 +101,4 @@ nextButton.addEventListener("click", function () {
         items[activeItemIndex].classList.add("active-item");
         thumbnails[activeItemIndex].classList.add("active-thumbnail");
     }
-})
+}
