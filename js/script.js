@@ -1,6 +1,3 @@
-// ** DESCRIZIONE **
-// Aggiungere al carousel funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
-
 // Inserisco tutte le immagini dinamicamente servendomi di un array con le immagini e un ciclo for che concatena un template literal.
 // Array con immagini
 const images = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"];
@@ -67,10 +64,19 @@ previousButton.addEventListener("click", function () {
 // Bottone "successivo"
 nextButton.addEventListener("click", nextImage);
 
-// ********** AUTOPLAY **********
-const myInterval = setInterval(nextImage, 3000);
+// *************** AUTOPLAY ***************
+// ** DESCRIZIONE **
+// Aggiungere al carousel funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
 
-////////////////
+// Ogni tre secondi passo all'imagine successiva
+let myInterval = setInterval(nextImage, 3000);
+// Al click dell'utente, blocco interval e lo avvio di nuovo
+nextButton.addEventListener("click", () => {
+    clearInterval(myInterval);
+    myInterval = setInterval(nextImage, 3000);;
+});
+
+//////////////////////////
 // FUNCTIONS
 
 /**
